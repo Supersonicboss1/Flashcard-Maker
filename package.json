@@ -4,6 +4,7 @@
   "version": "0.0.2",
   "type": "module",
   "types": "./src/types/index.d.ts",
+  "homepage": "https://supersonicboss1.github.io/Flashcard-Maker/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
