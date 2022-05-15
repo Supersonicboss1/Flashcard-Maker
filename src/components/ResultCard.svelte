@@ -1,10 +1,10 @@
 <script lang="ts">
-	import {buttonStyle} from "./Styles.svelte";
+	import '../app.css'
     export let bodyText: string = "TITLE HERE"
     export let backText: string = "SNIPPET HERE"
 	let isFlipped: boolean = false
 	import { createEventDispatcher } from 'svelte';
-	export let index: number = 0
+	export let index: number
 	const dispatch = createEventDispatcher();
 	function executeDelete() {
 		console.log(index);
@@ -31,7 +31,7 @@
 	</div>
 	<div class="mt-4" />
 	{/if}
-	<button class={buttonStyle + " bg-cyan-200 hover:bg-cyan-50 "} on:click={() => isFlipped = !isFlipped}>Flip</button>
-	<button class={buttonStyle + " ml-2 bg-red-600 hover:bg-red-400"} on:click={() => executeDelete()}>Remove Card</button>
+	<button class={"btn-primary bg-cyan-200 hover:bg-cyan-50 "} on:click={() => isFlipped = !isFlipped}>Flip</button>
+	<button class={"btn-primary ml-2 bg-red-600 hover:bg-red-400"} on:click={() => executeDelete()}>Remove Card</button>
 
 </div>

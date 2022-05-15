@@ -1,14 +1,20 @@
 <script lang="ts">
 	// Imports
-	import {
-		buttonStyle,
-		inputStyle,
-		disabledButtonStyle,
-	} from "./components/Styles.svelte";
+
 	import ResultCard from "./components/ResultCard.svelte";
+	
 
 	// Variables
-	let cardData: {title: string; maintext: string}[] = JSON.parse(localStorage.getItem("cardData"));
+	let cardData: any[] = [
+		{
+			title: "Card 1",
+			maintext: "This is card 1",
+		}
+	];
+	if (localStorage.getItem("cardData") == null) {
+		localStorage.setItem("cardData", JSON.stringify(cardData));
+	}
+	cardData = JSON.parse(localStorage.getItem("cardData"));
 
 	let ErrorMessage: string = "";
 
@@ -31,7 +37,6 @@
 		} else ErrorMessage = "";
 	}
 	function createNewCard() {
-		//stub, replace with actual code
 		if (ErrorMessage == "" && newCardTitle != "" && newCardBack != "") {
 			cardData.push({
 				title: newCardTitle,
@@ -63,37 +68,35 @@
 			class="dark:bg-slate-800 bg-gray-100 shadow-xl w-1/2 rounded-xl border-gray-600 p-4 m-2 flex min-h-fit">
 			<div class="p-2 w-full relative">
 				<label
-					for="query"
+					for="title"
 					class="leading-7 dark:text-slate-400 text-black mb-3"
 					>Title</label>
 				<input
-					name="query"
+					name="title"
 					placeholder="Lorum Ipsum"
-					class={inputStyle + " w-full"}
+					class={" input-primary w-full"}
 					bind:value={newCardTitle}
 					on:input={() => validateInput()} />
 				<div
 					class="p-2 self-stretch flex-auto whitespace-pre-line relative">
 					<label
-						for="subreddit"
+						for="maincardtext"
 						class="leading-7 dark:text-slate-400 text-black mb-3"
 						>Text</label>
 					<textarea
-						name="subreddit"
+						name="maincardtext"
 						placeholder="Hint: Drag this text box at the corner to expand it!"
-						class={inputStyle +
-							" w-full flex self-stretch items-stretch overflow-visible min-h-fit overflow-y-hidden"}
+						class={
+							"input-primary w-full flex self-stretch items-stretch overflow-visible min-h-fit overflow-y-hidden"}
 						bind:value={newCardBack}
 						on:input={() => validateInput()} />
 				</div>
 				<button
 					disabled={ErrorMessage != ""}
 					class={ErrorMessage == ""
-						? "mx-3 bg-center self-center justify-center content-center w-1/3 bg-cyan-200 hover:bg-cyan-100 " +
-						  buttonStyle
-						: "mx-3 bg-center self-center justify-center content-center w-1/3 text-white " +
-						  disabledButtonStyle}
-					on:click|preventDefault={() => createNewCard()}
+						? "mx-3 bg-center self-center justify-center content-center w-1/3 bg-cyan-200 hover:bg-cyan-100 btn-primary"
+						: "mx-3 bg-center self-center justify-center content-center w-1/3 text-white btn-disabled"}
+					on:click={() => createNewCard()}
 					>Add Card</button>
 			</div>
 		</form>
