@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.1",
-    "@tailwindcss/typography": "^0.5.2"
+    "@tailwindcss/typography": "^0.5.2",
+    "svelte-icons": "^2.1.0"
   }
 }
