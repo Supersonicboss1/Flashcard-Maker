@@ -24,7 +24,8 @@
 	if (localStorage.getItem("cardData") == null) {
 		localStorage.setItem("cardData", JSON.stringify(cardData));
 	}
-	cardData = JSON.parse(localStorage.getItem("cardData"));
+
+	cardData = JSON.parse(localStorage.getItem("cardData") || '[]');
 
 	let ErrorMessage: string = "";
 

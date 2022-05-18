@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '../app.css'
     export let bodyText: string = "TITLE HERE"
     export let backText: string = "SNIPPET HERE"
 	let isFlipped: boolean = false
