@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@rgossiaux/svelte-headlessui': ^1.0.0-beta.12
+  '@rgossiaux/svelte-headlessui': 1.0.0-beta.12
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.30
   '@tailwindcss/forms': ^0.5.1
   '@tailwindcss/typography': ^0.5.2
