@@ -3,6 +3,7 @@
     export let backText: string = "SNIPPET HERE"
 	let isFlipped: boolean = false
 	import { createEventDispatcher } from 'svelte';
+import Button from './Button.svelte';
 	export let index: number
 	const dispatch = createEventDispatcher();
 	function executeDelete() {
@@ -30,7 +31,11 @@
 	</div>
 	<div class="mt-4" />
 	{/if}
-	<button class={"btn-primary bg-cyan-200 hover:bg-cyan-50 "} on:click={() => isFlipped = !isFlipped}>Flip</button>
-	<button class={"btn-primary ml-2 bg-red-600 hover:bg-red-400"} on:click={() => executeDelete()}>Remove Card</button>
+	<Button on:click={() => isFlipped = !isFlipped} type="primary">
+		Flip
+	</Button>
+	<Button type="danger" on:click={() => executeDelete()}>
+		Remove Card
+	</Button>
 
 </div>

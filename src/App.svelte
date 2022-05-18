@@ -69,6 +69,7 @@
 		LightModeEnabled = !LightModeEnabled;
 		localStorage.setItem("LightModeEnabled", LightModeEnabled.toString());
 	}
+import Button from "./components/Button.svelte";
 </script>
 
 <svelte:head>
@@ -79,6 +80,7 @@
 </svelte:head>
 
 <html lang="en-GB" class={LightModeEnabled ? "" : "dark"}>
+
 	<div class="dark:bg-slate-900 h-screen w-screen">
 		<div
 			class="dark:bg-slate-900 flex flex-col my-auto items-center bg-cover">
@@ -151,12 +153,15 @@ pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-tra
 							bind:value={newCardBack}
 							on:input={() => validateInput()} />
 					</div>
-					<button
-						disabled={ErrorMessage != ""}
-						class={ErrorMessage == ""
-							? "mx-3 bg-center self-center justify-center content-center w-1/3 bg-cyan-200 hover:bg-cyan-100 btn-primary"
-							: "mx-3 bg-center self-center justify-center content-center w-1/3 text-white btn-disabled"}
-						on:click={() => createNewCard()}>Add Card</button>
+					<Button
+						isDisabled={ErrorMessage != ""}
+						type={ErrorMessage == ""
+							? "primary"
+							: "disabled"}
+						on:click={() => createNewCard()}>Add Card</Button>
+						<Button class="danger">
+							Test
+						</Button>
 				</div>
 			</form>
 			{#if ErrorMessage != ""}
