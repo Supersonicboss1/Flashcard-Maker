@@ -1,10 +1,7 @@
 <script lang="ts">
 	// Imports
-	import {Switch} from "@rgossiaux/svelte-headlessui";
-	import {fly} from "svelte/transition";
 	import ResultCard from "./components/ResultCard.svelte";
-	import FaMoon from "svelte-icons/fa/FaMoon.svelte";
-	import FaSun from "svelte-icons/fa/FaSun.svelte";
+	import FaExclamationCircle from "svelte-icons/fa/FaExclamationCircle.svelte";
 	// Variables
 	// prefers dark mode
 
@@ -47,9 +44,9 @@
 	function validateInput() {
 		// Validate User Input
 		if (newCardTitle == "") {
-			ErrorMessage = "Please enter a title";
+			ErrorMessage = "Please enter a title!";
 		} else if (newCardBack == "") {
-			ErrorMessage = "Please enter a text";
+			ErrorMessage = "Please enter some text!";
 		} else ErrorMessage = "";
 	}
 	function createNewCard() {
@@ -64,15 +61,11 @@
 			cardData = cardData;
 			localStorage.setItem("cardData", JSON.stringify(cardData));
 		} else {
-			ErrorMessage = "Please enter a title and text";
+			ErrorMessage = "Please enter a title and text!";
 		}
 	}
 
-	function invertLightMode() {
-		// Light -> Dark and vice versa
-		LightModeEnabled = !LightModeEnabled;
-		localStorage.setItem("LightModeEnabled", LightModeEnabled.toString());
-	}
+	import DarkModeToggle from "./components/DarkToggle.svelte";
 	import Button from "./components/Button.svelte";
 </script>
 
@@ -83,42 +76,12 @@
 	<meta name="theme-color" content="#0f172a" />
 </svelte:head>
 
-<html lang="en-GB" class={LightModeEnabled ? "" : "dark"}>
+<html lang="en-GB" class={LightModeEnabled ? "App" : "App dark"}>
 	<div class="dark:bg-slate-900 h-screen w-screen">
 		<div
 			class="dark:bg-slate-900 flex flex-col my-auto items-center bg-cover">
 			<div class="absolute right-2 top-2">
-				<Switch
-					on:change={() => invertLightMode()}
-					checked={LightModeEnabled}
-					class={`${
-						LightModeEnabled ? "bg-yellow-400" : "bg-blue-400"
-					}
-relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}>
-					{#if LightModeEnabled}
-						<div
-							in:fly={{x: -40, duration: 200}}
-							class={`${
-								LightModeEnabled
-									? "translate-x-9"
-									: "translate-x-0"
-							}
-pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-transparent shadow-lg ring-0 transition duration-200 ease-in-out`}>
-							<FaSun />
-						</div>
-					{:else}
-						<div
-							in:fly={{x: 40, duration: 200}}
-							class={`${
-								LightModeEnabled
-									? "translate-x-9"
-									: "translate-x-0"
-							}
-pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-transparent shadow-lg ring-0 transition duration-200 ease-in-out`}>
-							<FaMoon />
-						</div>
-					{/if}
-				</Switch>
+				<DarkModeToggle bind:LightModeEnabled={LightModeEnabled} />
 			</div>
 			<h1 class="dark:text-slate-400 text-black text-8xl">
 				Flashcard Maker
@@ -132,18 +95,20 @@ pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-tra
 						class="leading-7 dark:text-slate-400 text-black mb-3"
 						>Title</label>
 					<input
+						type="text"
 						name="title"
 						placeholder="Lorum Ipsum"
 						class={" input-primary w-full"}
 						bind:value={newCardTitle}
 						on:input={() => validateInput()} />
 					<div
-						class="p-2 self-stretch flex-auto whitespace-pre-line relative">
+						class="p-2 w-full relative">
 						<label
 							for="maincardtext"
 							class="leading-7 dark:text-slate-400 text-black mb-3"
 							>Text</label>
 						<textarea
+							type="text"
 							name="maincardtext"
 							placeholder="Hint: Drag this text box at the corner to expand it!"
 							class={"input-primary w-full flex self-stretch items-stretch overflow-visible min-h-fit overflow-y-hidden"}
@@ -160,7 +125,7 @@ pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-tra
 			{#if ErrorMessage != ""}
 				<div
 					class="w-auto p-4 bg-red-500 rounded-lg border-gray-600 shadow-2xl flex">
-					<p class="text-white text-5xl select-none">!</p>
+					<div class="text-white w-14 h-14"><FaExclamationCircle class="w-2 h-2"/></div>
 					<p class="text-white ml-6 my-3">
 						{ErrorMessage}
 					</p>
@@ -178,3 +143,9 @@ pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-tra
 		</div>
 	</div>
 </html>
+
+<style>
+.App {
+  font-family: 'Poppins', sans-serif;
+}
+</style>
