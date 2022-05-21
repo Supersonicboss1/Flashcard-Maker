@@ -1,12 +1,12 @@
-const typography = require("@tailwindcss/typography");
 const forms = require("@tailwindcss/forms");
 
 const config = {
+  mode: 'jit',
   darkMode: 'class',
   content: ["./src/**/*.{html,js,svelte,ts}"],
 
 
-  plugins: [forms, typography],
+  plugins: [forms],
 };
 
 module.exports = config;
