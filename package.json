@@ -27,8 +27,8 @@
     "vite": "^2.9.5"
   },
   "dependencies": {
+    "@fontsource/poppins": "^4.5.8",
     "@tailwindcss/forms": "^0.5.1",
-    "@tailwindcss/typography": "^0.5.2",
     "svelte-icons": "^2.1.0"
   }
 }
