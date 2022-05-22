@@ -4,6 +4,13 @@ import FaMoon from "svelte-icons/fa/FaMoon.svelte";
 import FaSun from "svelte-icons/fa/FaSun.svelte";
 // on:message current value and change
 export let LightModeEnabled: boolean = false;
+
+if (localStorage.getItem("LightModeEnabled") == null) {
+		LightModeEnabled = !window.matchMedia("(prefers-color-scheme: dark)").matches;
+		localStorage.setItem("LightModeEnabled", LightModeEnabled.toString());
+	}
+LightModeEnabled = localStorage.getItem("LightModeEnabled") == "true";
+
 function invertLightMode() {
 		// Light -> Dark and vice versa
 		LightModeEnabled = !LightModeEnabled;

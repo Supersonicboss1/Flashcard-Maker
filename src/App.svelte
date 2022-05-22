@@ -3,9 +3,8 @@
 	import ResultCard from "./components/ResultCard.svelte";
 	import FaExclamationCircle from "svelte-icons/fa/FaExclamationCircle.svelte";
 	// Variables
-	// prefers dark mode
 
-	let LightModeEnabled: boolean = false
+	let LightModeEnabled: boolean = false;
 	let cardData: any[] = [
 		{
 			title: "Card 1",
@@ -14,12 +13,6 @@
 	];
 	let newCardBack: string = "";
 	let newCardTitle: string = "";
-	// Set Light Mode
-	if (localStorage.getItem("LightModeEnabled") == null) {
-		LightModeEnabled = !window.matchMedia("(prefers-color-scheme: dark)").matches;
-		localStorage.setItem("LightModeEnabled", LightModeEnabled.toString());
-	}
-	LightModeEnabled = localStorage.getItem("LightModeEnabled") == "true";
 
 	// Set Card Data
 	if (localStorage.getItem("cardData") == null) {
@@ -81,7 +74,7 @@
 		<div
 			class="dark:bg-slate-900 flex flex-col my-auto items-center bg-cover">
 			<div class="absolute right-2 top-2">
-				<DarkModeToggle bind:LightModeEnabled={LightModeEnabled} />
+				<DarkModeToggle bind:LightModeEnabled />
 			</div>
 			<h1 class="dark:text-slate-400 text-black text-8xl">
 				Flashcard Maker
@@ -101,8 +94,7 @@
 						class={" input-primary w-full"}
 						bind:value={newCardTitle}
 						on:input={() => validateInput()} />
-					<div
-						class="p-2 w-full relative">
+					<div class="p-2 w-full relative">
 						<label
 							for="maincardtext"
 							class="leading-7 dark:text-slate-400 text-black mb-3"
@@ -125,7 +117,9 @@
 			{#if ErrorMessage != ""}
 				<div
 					class="w-auto p-4 bg-red-500 rounded-lg border-gray-600 shadow-2xl flex">
-					<div class="text-white w-14 h-14"><FaExclamationCircle class="w-2 h-2"/></div>
+					<div class="text-white w-14 h-14">
+						<FaExclamationCircle class="w-2 h-2" />
+					</div>
 					<p class="text-white ml-6 my-3">
 						{ErrorMessage}
 					</p>
@@ -145,7 +139,7 @@
 </html>
 
 <style>
-.App {
-  font-family: 'Poppins', sans-serif;
-}
+	.App {
+		font-family: "Poppins", sans-serif;
+	}
 </style>
