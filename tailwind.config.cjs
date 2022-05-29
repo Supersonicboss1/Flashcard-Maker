@@ -1,12 +1,11 @@
-const forms = require("@tailwindcss/forms");
+const forms = require('@tailwindcss/forms');
 
 const config = {
-  mode: 'jit',
-  darkMode: 'class',
-  content: ["./src/**/*.{html,js,svelte,ts}"],
+	mode: 'jit',
+	darkMode: 'class',
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-
-  plugins: [forms],
+	plugins: [forms]
 };
 
 module.exports = config;

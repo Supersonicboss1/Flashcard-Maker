@@ -1,16 +1,12 @@
 <script lang="ts">
 	let buttonProps = {
-		class: [$$restProps.class],
+		class: [$$restProps.class]
 	};
 	export let isDisabled: boolean = false;
 	export let type: 'primary' | 'danger' | 'disabled' = 'primary';
 </script>
 
-<button
-	on:click
-	disabled="{isDisabled}"
-	class="{type + ' ' + buttonProps.class}"
->
+<button on:click disabled={isDisabled} class={type + ' ' + buttonProps.class}>
 	<slot />
 </button>
 
