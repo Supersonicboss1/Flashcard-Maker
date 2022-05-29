@@ -75,10 +75,12 @@
 			<div class="absolute right-2 top-2">
 				<DarkModeToggle bind:lightModeEnabled />
 			</div>
-			<h1 class="dark:text-slate-400 text-black text-8xl">Flashcard Maker</h1>
+			<h1 class="dark:text-slate-400 text-black md:text-7xl lg:text-8xl text-4xl">
+				Flashcard Maker
+			</h1>
 			<div class="my-5" />
 			<form
-				class="dark:bg-slate-800 bg-gray-100 shadow-xl w-1/2 rounded-xl border-gray-600 p-4 m-2 flex min-h-fit"
+				class="dark:bg-slate-800 bg-gray-100 shadow-xl md:w-1/2 w-4/5 rounded-xl border-gray-600 p-4 m-2 flex min-h-fit"
 			>
 				<div class="p-2 w-full relative">
 					<label for="title" class="leading-7 dark:text-slate-400 text-black mb-3">Title</label>
@@ -122,7 +124,7 @@
 				</div>
 			{/if}
 		</div>
-		<div class="dark:bg-slate-900 grid grid-cols-3 gap-4">
+		<div class="dark:bg-slate-900 grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4 mr-6">
 			{#each cardData as card}
 				<ResultCard
 					backText={card.title}
