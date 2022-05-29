@@ -3,30 +3,30 @@
 	import FaMoon from 'svelte-icons/fa/FaMoon.svelte';
 	import FaSun from 'svelte-icons/fa/FaSun.svelte';
 	// on:message current value and change
-	export let LightModeEnabled: boolean = false;
+	export let lightModeEnabled: boolean = false;
 
-	if (localStorage.getItem('LightModeEnabled') == null) {
-		LightModeEnabled = !window.matchMedia('(prefers-color-scheme: dark)').matches;
-		localStorage.setItem('LightModeEnabled', LightModeEnabled.toString());
+	if (localStorage.getItem('lightModeEnabled') == null) {
+		lightModeEnabled = !window.matchMedia('(prefers-color-scheme: dark)').matches;
+		localStorage.setItem('lightModeEnabled', lightModeEnabled.toString());
 	}
-	LightModeEnabled = localStorage.getItem('LightModeEnabled') == 'true';
+	lightModeEnabled = localStorage.getItem('lightModeEnabled') == 'true';
 
 	function invertLightMode(): void {
 		// Light -> Dark and vice versa
-		LightModeEnabled = !LightModeEnabled;
-		localStorage.setItem('LightModeEnabled', LightModeEnabled.toString());
+		lightModeEnabled = !lightModeEnabled;
+		localStorage.setItem('lightModeEnabled', lightModeEnabled.toString());
 	}
 </script>
 
 <div>
 	<button
-		title={`${LightModeEnabled ? 'Enable dark mode' : 'Enable light mode'}`}
+		title={`${lightModeEnabled ? 'Enable dark mode' : 'Enable light mode'}`}
 		on:click={() => invertLightMode()}
-		checked={LightModeEnabled}
-		class={`${LightModeEnabled ? 'bg-slate-700' : 'bg-white'}
+		checked={lightModeEnabled}
+		class={`${lightModeEnabled ? 'bg-slate-700' : 'bg-white'}
 relative inline-flex shadow-2xl p-1 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
 	>
-		{#if !LightModeEnabled}
+		{#if !lightModeEnabled}
 			<div
 				in:fade={{ duration: 200 }}
 				class={`

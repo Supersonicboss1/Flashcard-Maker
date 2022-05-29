@@ -4,7 +4,7 @@
 	import FaExclamationCircle from 'svelte-icons/fa/FaExclamationCircle.svelte';
 	// Variables
 
-	let LightModeEnabled: boolean = false;
+	let lightModeEnabled: boolean = false;
 	let cardData: any[] = [
 		{
 			title: 'Card 1',
@@ -21,7 +21,7 @@
 
 	cardData = JSON.parse(localStorage.getItem('cardData') || '[]');
 
-	let ErrorMessage: string = '';
+	let errorMessage: string = '';
 
 	// Functions
 	function executeDelete(event: { detail: { index: number } }) {
@@ -37,14 +37,14 @@
 	function validateInput(): void {
 		// Validate User Input
 		if (newCardTitle == '') {
-			ErrorMessage = 'Please enter a title!';
+			errorMessage = 'Please enter a title!';
 		} else if (newCardBack == '') {
-			ErrorMessage = 'Please enter some text!';
-		} else ErrorMessage = '';
+			errorMessage = 'Please enter some text!';
+		} else errorMessage = '';
 	}
 	function createNewCard(): void {
 		// Create New Card and add it to the array, then push it to local storage
-		if (ErrorMessage == '' && newCardTitle != '' && newCardBack != '') {
+		if (errorMessage == '' && newCardTitle != '' && newCardBack != '') {
 			cardData.push({
 				title: newCardTitle,
 				maintext: newCardBack
@@ -54,7 +54,7 @@
 			cardData = cardData;
 			localStorage.setItem('cardData', JSON.stringify(cardData));
 		} else {
-			ErrorMessage = 'Please enter a title and text!';
+			errorMessage = 'Please enter a title and text!';
 		}
 	}
 
@@ -69,11 +69,11 @@
 	<meta name="theme-color" content="#0f172a" />
 </svelte:head>
 
-<html lang="en-GB" class={LightModeEnabled ? 'App' : 'App dark'}>
+<html lang="en-GB" class={lightModeEnabled ? 'App' : 'App dark'}>
 	<div class="dark:bg-slate-900 h-screen w-screen">
 		<div class="dark:bg-slate-900 flex flex-col my-auto items-center bg-cover">
 			<div class="absolute right-2 top-2">
-				<DarkModeToggle bind:LightModeEnabled />
+				<DarkModeToggle bind:lightModeEnabled />
 			</div>
 			<h1 class="dark:text-slate-400 text-black text-8xl">Flashcard Maker</h1>
 			<div class="my-5" />
@@ -104,20 +104,20 @@
 						/>
 					</div>
 					<Button
-						isDisabled={ErrorMessage != ''}
-						type={ErrorMessage == '' ? 'primary' : 'disabled'}
+						isDisabled={errorMessage != ''}
+						type={errorMessage == '' ? 'primary' : 'disabled'}
 						on:click={() => createNewCard()}>Add Card</Button
 					>
 					<Button class="danger">Test</Button>
 				</div>
 			</form>
-			{#if ErrorMessage != ''}
+			{#if errorMessage != ''}
 				<div class="w-auto p-4 bg-red-500 rounded-lg border-gray-600 shadow-2xl flex">
 					<div class="text-white w-14 h-14">
 						<FaExclamationCircle class="w-2 h-2" />
 					</div>
 					<p class="text-white ml-6 my-3">
-						{ErrorMessage}
+						{errorMessage}
 					</p>
 				</div>
 			{/if}
