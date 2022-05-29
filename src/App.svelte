@@ -92,7 +92,7 @@
 						bind:value={newCardTitle}
 						on:input={() => validateInput()}
 					/>
-					<div class="p-2 w-full relative">
+					<div class="p-2 w-full relative -translate-x-2">
 						<label for="maincardtext" class="leading-7 dark:text-slate-400 text-black mb-3"
 							>Text</label
 						>
@@ -100,7 +100,7 @@
 							type="text"
 							name="maincardtext"
 							placeholder="Hint: Drag this text box at the corner to expand it!"
-							class={'input-primary w-full flex self-stretch items-stretch overflow-visible min-h-fit overflow-y-hidden'}
+							class={'input-primary w-full h-max self-stretch items-stretch overflow-visible min-h-fit overflow-y-hidden block resize'}
 							bind:value={newCardBack}
 							on:input={() => validateInput()}
 						/>
