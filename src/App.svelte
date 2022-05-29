@@ -110,7 +110,6 @@
 						type={errorMessage == '' ? 'primary' : 'disabled'}
 						on:click={() => createNewCard()}>Add Card</Button
 					>
-					<Button class="danger">Test</Button>
 				</div>
 			</form>
 			{#if errorMessage != ''}
