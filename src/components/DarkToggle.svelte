@@ -2,7 +2,7 @@
 	import { fade } from 'svelte/transition';
 	import FaMoon from 'svelte-icons/fa/FaMoon.svelte';
 	import FaSun from 'svelte-icons/fa/FaSun.svelte';
-	// on:message current value and change
+	/** Current status of light/dark mode - change is handled with function `invertLightMode`.*/
 	export let lightModeEnabled: boolean = false;
 
 	if (localStorage.getItem('lightModeEnabled') == null) {
@@ -10,9 +10,9 @@
 		localStorage.setItem('lightModeEnabled', lightModeEnabled.toString());
 	}
 	lightModeEnabled = localStorage.getItem('lightModeEnabled') == 'true';
-
+	/** Sets `lightModeEnabled` --  Light -> Dark and vice versa.*/
 	function invertLightMode(): void {
-		// Light -> Dark and vice versa
+		//
 		lightModeEnabled = !lightModeEnabled;
 		localStorage.setItem('lightModeEnabled', lightModeEnabled.toString());
 	}

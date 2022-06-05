@@ -3,8 +3,9 @@
 	import ResultCard from './components/ResultCard.svelte';
 	import FaExclamationCircle from 'svelte-icons/fa/FaExclamationCircle.svelte';
 	// Variables
-
+	/** Current status of light/dark mode - change is handled in component `DarkModeToggle`.*/
 	let lightModeEnabled: boolean = false;
+	/** Current data of any stored flashcards. Fetched from `localstorage` if available. */
 	let cardData: any[] = [
 		{
 			title: 'Card 1',
@@ -20,10 +21,11 @@
 	}
 
 	cardData = JSON.parse(localStorage.getItem('cardData') || '[]');
-
+	/** Current error message - shows error component if there is any string.*/
 	let errorMessage: string = '';
 
 	// Functions
+	/** Deletes a flashcard from `cardData` then pushes to `localstorage`*/
 	function executeDelete(event: { detail: { index: number } }) {
 		// Delete Card
 		console.log(event.detail.index);
@@ -33,7 +35,10 @@
 	}
 
 	// New Card
-
+	/** Checks whether input is valid and sets `errorMessage` accordingly.
+	 * 1. Title is not empty
+	 * 2. Back/body is not empty
+	 */
 	function validateInput(): void {
 		// Validate User Input
 		if (newCardTitle == '') {
@@ -42,6 +47,7 @@
 			errorMessage = 'Please enter some text!';
 		} else errorMessage = '';
 	}
+	/** Creates a new card from user data, and pushes it to the `cardData` array, then `localstorage`*/
 	function createNewCard(): void {
 		// Create New Card and add it to the array, then push it to local storage
 		if (errorMessage == '' && newCardTitle != '' && newCardBack != '') {

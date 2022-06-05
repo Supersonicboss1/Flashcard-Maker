@@ -2,6 +2,7 @@
 	let buttonProps = {
 		class: [$$restProps.class]
 	};
+	/** Applies disabled styling to the button if true.*/
 	export let isDisabled: boolean = false;
 	export let type: 'primary' | 'danger' | 'disabled' = 'primary';
 </script>

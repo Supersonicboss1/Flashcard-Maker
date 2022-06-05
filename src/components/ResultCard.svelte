@@ -1,11 +1,16 @@
 <script lang="ts">
+	/** Text shown on the flashcard after flipping.*/
 	export let bodyText: string = 'TITLE HERE';
+	/** Text shown on the flashcard before flipping.*/
 	export let backText: string = 'SNIPPET HERE';
+	/** Whether the card has been flipped. Inverted on button click. */
 	let isFlipped: boolean = false;
 	import { createEventDispatcher } from 'svelte';
 	import Button from './Button.svelte';
+	/** The index number of the card in the `cardData` array. Used for deletion.*/
 	export let index: number;
 	const dispatch = createEventDispatcher();
+	/** Sends message to parent with `index` to delete specified flashcard */
 	function executeDelete(): void {
 		console.log(index);
 		dispatch('message', {
