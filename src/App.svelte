@@ -111,7 +111,7 @@
 				</div>
 				<Button
 					isDisabled={!isTitle || !isBack}
-					type={!isBack || !isTitle ? 'primary' : 'disabled'}
+					type={isBack && isTitle ? 'primary' : 'disabled'}
 					on:click={() => createNewCard()}>Add Card</Button
 				>
 			</div>
